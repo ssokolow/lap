@@ -1,7 +1,7 @@
 #Locate And Play
 
-Locate And Play is a multipurpose Python script for adding
-entries to your playlist in Audacious Media Player (and possibly other
+Locate And Play is a multipurpose Python script for selecting
+media files to feed to Audacious Media Player (and possibly other
 MPRIS-based players) or a command specified via `--exec`.
 
 ![urwid screenshot](screenshots/lap_urwid.png)
@@ -33,6 +33,19 @@ what name it's called under.
 <dd>Like <code>raq</code> but start the first one playing too.</dd>
 </dl>
 
+#### Noteworthy Options
+
+<dl>
+<dt><code>--exec &lt;command&gt;</code> or <code>-e &lt;command&gt;</code></dt>
+<dd>Execute the specified commands with the chosen files as arguments.</dd>
+<dt><code>--print</code> or <code>-p</code></dt>
+<dd>Print the selected files, one per line, rather than playing/enqueueing.</dd>
+<dt><code>--print0</code> or <code>-0</code></dt>
+<dd>Like <code>--print</code> but use NUL characters as separators instead.</dd>
+<dt><code>--show_path</code> or <code>-P</code></dt>
+<dd>Use full paths rather than just filenames with <code>--print</code> and <code>--print0</code></dd>
+</dl>
+
 When displaying a chooser, there are two possible forms it can take: The
 urwid-based one depicted above or a simple, fallback chooser with no
 external dependencies.
@@ -40,7 +53,6 @@ external dependencies.
 ### Requirements
 
 * Python 2.x (Support for 3.x will come later)
-* [Audacious Media Player](http://audacious-media-player.org/) (Support for other MPRIS-compliant players planned)
 * [locate](https://en.wikipedia.org/wiki/Locate_%28Unix%29) (Only required for
   variants beginning with `l`)
 * [urwid](http://urwid.org/) (only required if you want the pretty chooser)
