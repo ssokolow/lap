@@ -182,7 +182,7 @@ def gather_random(roots, wanted_count):
                     if not os.path.splitext(x)[1].lower() in BLACKLISTED_EXTS)
 
     chosen = []
-    for i in range(0, opts.wanted_count):
+    for i in range(0, wanted_count):
         if choices:
             # We don't want duplicates
             chosen.append(choices.pop(random.randrange(0, len(choices))))
