@@ -40,7 +40,6 @@ from .version import __version__
 
 from .filetypes import OK_EXTS, BLACKLISTED_EXTS
 
-USE_PAGER = False   # Should we page output if it's more than a screenful?
 DEFAULT_RAND_COUNT = 10
 
 locate_command = ['locate', '-i']
