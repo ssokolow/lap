@@ -6,6 +6,9 @@
 
 from __future__ import print_function, absolute_import
 
+__author__ = "Stephan Sokolow (deitarion/SSokolow)"
+__license__ = "GNU GPL 2 or later"
+
 from setuptools import setup, find_packages
 from lap.version import __version__
 
@@ -27,7 +30,7 @@ if __name__ == '__main__':
             "Environment :: Console :: Curses",
             "Intended Audience :: End Users/Desktop",
             "License :: OSI Approved :: GNU General Public License v2"
-                "or later (GPLv2+)",
+                "or later (GPLv2+)",  # pylint: disable=bad-continuation
             "Natural Language :: English",
             "Operating System :: POSIX",
             "Programming Language :: Python :: 2",
@@ -53,7 +56,7 @@ if __name__ == '__main__':
             ],
         },
 
-        #test_suite='run_test.get_tests',
+        # test_suite='run_test.get_tests',
     )
 
 # vim: set sw=4 sts=4 :
