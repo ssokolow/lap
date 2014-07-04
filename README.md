@@ -44,11 +44,12 @@ what name it's called under.
 <dd>Like <code>--print</code> but use NUL characters as separators instead.</dd>
 <dt><code>--show_path</code> or <code>-P</code></dt>
 <dd>Use full paths rather than just filenames with <code>--print</code> and <code>--print0</code></dd>
+<dt><code>--no-urwid</code></dt>
+<dd>Use the fallback chooser even if urwid is available.
+<p><img src="screenshots/lap_no-urwid.png" alt="screenshot" /></p>
+</dd>
 </dl>
 
-When displaying a chooser, there are two possible forms it can take: The
-urwid-based one depicted above or a simple, fallback chooser with no
-external dependencies.
 
 ### Requirements
 
