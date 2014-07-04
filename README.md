@@ -1,14 +1,15 @@
 #Locate And Play
 
-Locate And Play is a multipurpose Python script for selecting
-media files to feed to Audacious Media Player (and possibly other
-MPRIS-based players) or a command specified via `--exec`.
+Locate And Play is a multipurpose Python script for selecting media files to
+feed to an
+[MPRIS](http://specifications.freedesktop.org/mpris-spec/latest/)-compliant
+media player, a command specified via `--exec`, or a shell pipeline.
 
 ![urwid screenshot](screenshots/lap_urwid.png)
 
 The name originally stood for "Locate, Audacious, Play" (a derivation of
-"Audacious Play" because `ap` was the first subcommand to be written) and it
-was originally announced
+"Audacious Play" because `ap` was the first subcommand to be written and
+Audacious Media Player my player of choice) and it was originally announced
 [on my blog](http://blog.ssokolow.com/archives/2013/05/24/a-little-tool-for-command-line-playlist-building/)
 as part of my [roaming profile](https://github.com/ssokolow/profile).
 
@@ -58,3 +59,9 @@ what name it's called under.
   variants beginning with `l`)
 * [urwid](http://urwid.org/) (only required if you want the pretty chooser)
 * dbus-python (only required if you want to play/enqueue via MPRIS)
+
+#### Known Compatible MPRIS Implementations
+
+* [Audacious Media Player](http://audacious-media-player.org/) (actively
+   [dogfooded](https://en.wikipedia.org/wiki/Eating_your_own_dog_food))
+* [QMMP](http://qmmp.ylsoftware.com/) (v0.7.7 tested on 2014-07-04)
