@@ -57,7 +57,7 @@ except ImportError:
     UrwidChooser = None  # pylint: disable=invalid-name
 
 try:
-    from .backends.mpris import MPRISAdder, DBusException
+    from .output.mpris import MPRISAdder, DBusException
 except ImportError:
     DBusException = None  # pylint: disable=invalid-name
 
