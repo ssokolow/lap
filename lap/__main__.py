@@ -204,12 +204,12 @@ def get_results(query, locate_cmd=locate_command):
     return results
 
 #TODO: Document and, if necessary, refactor
-def parseChoice(inString):
+def parse_choice(in_str):
     try:
-        return [int(inString)]
+        return [int(in_str)]
     except ValueError:
         choices = []
-        for x in inString.replace(',', ' ').split():
+        for x in in_str.replace(',', ' ').split():
             try:
                 choices.append(int(x))
             except ValueError:
@@ -235,7 +235,7 @@ def choose(results, strip_path):
                  # the "Not an integer" message for values containing "q".
 
         output = []
-        for index in parseChoice(choices):
+        for index in parse_choice(choices):
             if index > 0 and index <= len(results):
                 output.append(results[index - 1])
             else:
@@ -246,11 +246,11 @@ def choose(results, strip_path):
 #TODO: Split this up more
 def main():
     cmd = os.path.split(sys.argv[0])[1]
-    aTy = (cmd.lower() in ('ap', 'aq')) and '<path> ...' or '<keyword> ...'
+    usage_t = (cmd.lower() in ('ap', 'aq')) and '<path> ...' or '<keyword> ...'
 
     from optparse import OptionParser
     op = OptionParser(version="%%prog v%s" % __version__,
-        usage="%prog [options] " + aTy,
+        usage="%prog [options] " + usage_t,
         description=__doc__.replace('\r\n', '\n').split('\n--snip--\n')[0])
 
     # TODO: Reconcile all these. Maybe make all input via options and then
