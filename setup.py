@@ -4,7 +4,7 @@
  - Figure out how to mark optional packages as optional.
 """
 from setuptools import setup, find_packages
-from lap.version import __appname__, __version__
+from lap.version import __version__
 
 if __name__ == '__main__':
     setup(
@@ -23,7 +23,8 @@ if __name__ == '__main__':
             "Environment :: Console",
             "Environment :: Console :: Curses",
             "Intended Audience :: End Users/Desktop",
-            "License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)",
+            "License :: OSI Approved :: GNU General Public License v2"
+                "or later (GPLv2+)",
             "Natural Language :: English",
             "Operating System :: POSIX",
             "Programming Language :: Python :: 2",
@@ -51,3 +52,5 @@ if __name__ == '__main__':
 
         #test_suite='run_test.get_tests',
     )
+
+# vim: set sw=4 sts=4 :

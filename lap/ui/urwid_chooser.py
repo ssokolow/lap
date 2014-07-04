@@ -1,5 +1,11 @@
 """urwid-based chooser UI"""
 
+__author__ = "Stephan Sokolow (deitarion/SSokolow)"
+__license__ = "GNU GPL 2 or later"
+
+import logging
+log = logging.getLogger(__name__)
+
 import urwid
 from urwid import AttrMap
 
@@ -10,12 +16,14 @@ urwid.command_map['home'] = CURSOR_MAX_UP
 urwid.command_map['end'] = CURSOR_MAX_DOWN
 
 class BetterListBox(urwid.ListBox):
+    """C{urwid.ListBox} subclass which implements more GUI-like behaviours."""
     def _find_limit(self, reverse=False):
         """Find the first/last focusable widget in the list.
 
         @todo: Use the modified signal on the list walker to cache this
                for proper performance on long lists.
         """
+        # pylint: disable=maybe-no-member
         for x in self.body.positions(reverse=reverse):
             if self.body[x].selectable():
                 return x
@@ -31,6 +39,7 @@ class BetterListBox(urwid.ListBox):
 
         return super(BetterListBox, self).keypress(size, key)
 
+    # pylint: disable=too-many-arguments,unused-argument
     def mouse_event(self, size, event, button, col, row, focus):
         """@todo: Make the scrolling less jumpy and figure out how to do
                   it without altering widget focus.
@@ -49,10 +58,12 @@ class MyCheckBox(urwid.CheckBox):
     _command_map = urwid.command_map.copy()
     del _command_map['enter']
 
+    # pylint: disable=unused-argument
     def pack(self, size, focus=False):
         """@todo: Submit as patch"""
         return 4 + len(self.get_label()), 1
 
+# pylint: disable=too-many-public-methods
 class SetEdit(urwid.Edit):
     def get_results(self):
         return self.get_edit_text().strip().split()
@@ -133,7 +144,7 @@ class UrwidChooser(object):
         return urwid.Frame(AttrMap(self.w_list, 'row'),
                 header=head, footer=foot)
 
-    def item_toggled(self, cbox, new_state, idx):
+    def item_toggled(self, cbox, new_state, idx):  # pylint: disable=W0613
         self.w_selected.set_idx(idx, new_state)
 
     def run(self, queue, exec_cmd=''):
@@ -172,4 +183,3 @@ class UrwidChooser(object):
             self.w_queue.toggle_state()
         #else:
         #    self.w_selected.set_caption(str(key) + ': ')
-
