@@ -221,7 +221,7 @@ def parse_choice(in_str):
         return choices
 
 #TODO: Document and, if necessary, refactor
-def choose(results, strip_path):
+def choose(results, strip_path, enqueue):
         # Draw the menu
         for pos, val in enumerate(results):
             val = strip_path and os.path.basename(val) or val
@@ -230,7 +230,7 @@ def choose(results, strip_path):
         choices = raw_input("Choice(s) (Ctrl+C to cancel): ")
 
         if 'q' in choices.lower():
-            opts.enqueue = True  # FIXME: Remove this side-effect.
+            enqueue = True
             choices = choices.replace('q', '')  # FIXME: This will distort
                  # the "Not an integer" message for values containing "q".
 
@@ -241,7 +241,7 @@ def choose(results, strip_path):
             else:
                 print("Invalid result index: %d" % index)
 
-        return output
+        return output, enqueue
 
 #TODO: Split this up more
 def main():
@@ -342,7 +342,8 @@ def main():
                 results, opts.enqueue, opts.exe_cmd = chooser.run(
                         opts.enqueue, opts.exe_cmd)
             else:
-                results = choose(results, not opts.show_path)
+                results, opts.enqueue = choose(
+                    results, not opts.show_path, opts.enqueue)
         except KeyboardInterrupt:
             results = []
     else:
