@@ -48,17 +48,11 @@ locate_command = ['locate', '-i']
 import fnmatch, logging, os, random, string, subprocess, sys
 log = logging.getLogger(__name__)
 
+from lap.ui.fallback_chooser import choose
 try:
     from lap.ui.urwid_chooser import UrwidChooser
 except ImportError:
     UrwidChooser = None
-
-# Use readline if available but don't depend on it
-try:
-    import readline
-    readline  # Shut PyFlakes up
-except ImportError:
-    pass
 
 try:
     import dbus
@@ -203,45 +197,6 @@ def get_results(query, locate_cmd=locate_command):
     results.sort()
     return results
 
-#TODO: Document and, if necessary, refactor
-def parse_choice(in_str):
-    try:
-        return [int(in_str)]
-    except ValueError:
-        choices = []
-        for x in in_str.replace(',', ' ').split():
-            try:
-                choices.append(int(x))
-            except ValueError:
-                try:
-                    first, last = [int(y) for y in x.split(':', 1)]
-                    choices.extend(range(first, last + 1))
-                except ValueError:
-                    print("Not an integer or range: %s" % x)
-        return choices
-
-#TODO: Document and, if necessary, refactor
-def choose(results, strip_path, enqueue):
-        # Draw the menu
-        for pos, val in enumerate(results):
-            val = strip_path and os.path.basename(val) or val
-            print("%3d) %s" % (pos + 1, val))
-
-        choices = raw_input("Choice(s) (Ctrl+C to cancel): ")
-
-        if 'q' in choices.lower():
-            enqueue = True
-            choices = choices.replace('q', '')  # FIXME: This will distort
-                 # the "Not an integer" message for values containing "q".
-
-        output = []
-        for index in parse_choice(choices):
-            if index > 0 and index <= len(results):
-                output.append(results[index - 1])
-            else:
-                print("Invalid result index: %d" % index)
-
-        return output, enqueue
 
 #TODO: Split this up more
 def main():
