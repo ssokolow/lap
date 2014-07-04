@@ -1,6 +1,6 @@
 """Pure TTY chooser UI"""
 
-from __future__ import print_function
+from __future__ import print_function, absolute_import
 
 __author__ = "Stephan Sokolow (deitarion/SSokolow)"
 __license__ = "GNU GPL 2 or later"

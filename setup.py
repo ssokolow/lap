@@ -3,6 +3,9 @@
  - Identify minimum dependency versions properly.
  - Figure out how to mark optional packages as optional.
 """
+
+from __future__ import print_function, absolute_import
+
 from setuptools import setup, find_packages
 from lap.version import __version__
 

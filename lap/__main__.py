@@ -32,13 +32,13 @@ TODO:
  - Allow non-file:// URLs.
 """
 
-from __future__ import print_function
+from __future__ import print_function, absolute_import
 
 __author__ = "Stephan Sokolow (deitarion/SSokolow)"
 __license__ = "GNU GPL 2 or later"
-from lap.version import __version__
+from .version import __version__
 
-from lap.filetypes import OK_EXTS, BLACKLISTED_EXTS
+from .filetypes import OK_EXTS, BLACKLISTED_EXTS
 
 USE_PAGER = False   # Should we page output if it's more than a screenful?
 DEFAULT_RAND_COUNT = 10
@@ -51,14 +51,14 @@ import string  # pylint: disable=deprecated-module
 import fnmatch, logging, os, random, subprocess, sys
 log = logging.getLogger(__name__)
 
-from lap.ui.fallback_chooser import choose
+from .ui.fallback_chooser import choose
 try:
-    from lap.ui.urwid_chooser import UrwidChooser
+    from .ui.urwid_chooser import UrwidChooser
 except ImportError:
     UrwidChooser = None  # pylint: disable=invalid-name
 
 try:
-    from lap.backends.mpris import MPRISAdder, DBusException
+    from .backends.mpris import MPRISAdder, DBusException
 except ImportError:
     DBusException = None  # pylint: disable=invalid-name
 
