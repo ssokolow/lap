@@ -18,7 +18,7 @@ CONSOLE_EXTS = ['.adx', '.gbs', '.gym', '.hes', '.kss', '.nsf', '.nsfe', '.ay',
 MIDI_EXTS     = ['.mid', '.rmi', '.midi']
 MODULE_EXTS   = [',mod', '.s3m', '.stm', '.xm', '.it']
 PLAYLIST_EXTS = ['.cue', '.m3u', '.pls', '.xspf']
-VIDEO_FILES   = ['.avi', '.flv', '.m4v', '.mov', '.mp4', '.webm']
+VIDEO_FILES   = ['.avi', '.flv', '.m4v', '.mov', '.mp4', '.webm', '.rm']
 WAVEFORM_EXTS = ['.aac', '.ac3', '.aif', '.aiff', '.ape', '.au', '.flac',
                  '.m4a', '.mp2', '.mp3', '.mpc', '.ogg', '.shn', '.snd',
                  '.tta', '.voc', '.wav', '.wma', '.wv']
