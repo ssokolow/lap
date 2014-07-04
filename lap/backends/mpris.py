@@ -33,6 +33,7 @@ class MPRISAdder(object):
                 # FIXME: Figure out why qdbusviewer can introspect this but I
                 # can't. (Could be related to how qdbus segfaults calling it)
                 if name == 'org.mpris.audacious':
+                    # pylint: disable=bad-continuation
                     self.pq_add = self._get_dbus_if(name,
                         '/org/atheme/audacious',
                         'org.atheme.audacious').PlayqueueAdd
@@ -50,6 +51,7 @@ class MPRISAdder(object):
 
     def get_player_names(self):
         """Find all D-Bus names for MPRIS-compatible players"""
+        # pylint: disable=bad-continuation
         ispect_if = self._get_dbus_if(
                 'org.freedesktop.DBus', '/', 'org.freedesktop.DBus')
         return [x for x in ispect_if.ListNames() if x.startswith('org.mpris.')]
@@ -59,6 +61,7 @@ class MPRISAdder(object):
 
         @todo: Extract ifname from the passed-in interface object.
         """
+        # pylint: disable=bad-continuation
         dom = ET.fromstring(interface.Introspect(
                 dbus_interface='org.freedesktop.DBus.Introspectable'))
         funcs = dom.findall(".//interface[@name='" + self.ifname + "']/method")

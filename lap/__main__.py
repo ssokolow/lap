@@ -101,6 +101,7 @@ def gather_random(roots, wanted_count):
     choices = []
     for root in roots:
         for fldr, _, files in os.walk(root):
+            # pylint: disable=bad-continuation
             choices.extend(os.path.join(fldr, x) for x in files
                     if not os.path.splitext(x)[1].lower() in BLACKLISTED_EXTS)
 
@@ -112,7 +113,7 @@ def gather_random(roots, wanted_count):
 
     return chosen
 
-#TODO: Refactor and reuse elsewhere
+# TODO: Refactor and reuse elsewhere
 def get_results(query, locate_cmd=locate_command):  # pylint: disable=W0102
     """Retrieve matches for C{query} in L{OK_EXTS} using L{locate_command}."""
     if isinstance(query, basestring):
@@ -127,11 +128,12 @@ def get_results(query, locate_cmd=locate_command):  # pylint: disable=W0102
     return results
 
 
-#TODO: Split this up more
+# TODO: Split this up more
 def main():
     cmd = os.path.split(sys.argv[0])[1]
     usage_t = (cmd.lower() in ('ap', 'aq')) and '<path> ...' or '<keyword> ...'
 
+    # pylint: disable=bad-continuation
     from optparse import OptionParser
     opars = OptionParser(version="%%prog v%s" % __version__,
         usage="%prog [options] " + usage_t,
@@ -193,7 +195,7 @@ def main():
 
     if not args:
         try:
-            #TODO: Do I really want this case to require Python 2.7?
+            # TODO: Do I really want this case to require Python 2.7?
             args.append(subprocess.check_output(
                 ['xdg-user-dir', 'MUSIC']).strip())
         except OSError, err:
@@ -210,7 +212,7 @@ def main():
         results = (len(args) > 0) and get_results(args.pop(0)) or []
         for keyword in args:
             results = [x for x in results
-                    #TODO: Implement locate's "only *%s* if no globbing chars"
+                    # TODO: Implement locate's "only *%s* if no globbing chars"
                     if fnmatch.fnmatch(x.lower(), '*%s*' % keyword.lower())]
     else:
         results = [os.path.abspath(x) for x in args]

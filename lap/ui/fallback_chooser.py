@@ -40,7 +40,7 @@ def parse_choice(in_str):
                     print("Not an integer or range: %s" % x)
         return choices
 
-#TODO: Document and, if necessary, refactor
+# TODO: Document and, if necessary, refactor
 def choose(results, strip_path, enqueue):
     # Draw the menu
     for pos, val in enumerate(results):
@@ -52,7 +52,7 @@ def choose(results, strip_path, enqueue):
     if 'q' in choices.lower():
         enqueue = True
         choices = choices.replace('q', '')  # FIXME: This will distort
-             # the "Not an integer" message for values containing "q".
+        # the "Not an integer" message for values containing "q".
 
     output = []
     for index in parse_choice(choices):

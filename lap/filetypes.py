@@ -1,6 +1,9 @@
 """Definitions for filetype filtering"""
 
-#TODO: Redesign this to support ack-like command-line filter options
+__author__ = "Stephan Sokolow (deitarion/SSokolow)"
+__license__ = "GNU GPL 2 or later"
+
+# TODO: Redesign this to support ack-like command-line filter options
 ADLIB_EXTS = ['.a2m', '.adl', '.amd', '.bam', '.cff', '.cmf', '.d00', '.dfm',
               '.dmo', '.dro', '.dtm', '.hsc', '.hsp', '.jbm', '.ksm', '.laa',
               '.lds', '.mad', '.mkj', '.msc', '.mtk', '.rad', '.raw', '.rix',
@@ -11,6 +14,7 @@ CONSOLE_EXTS = ['.adx', '.gbs', '.gym', '.hes', '.kss', '.nsf', '.nsfe', '.ay',
                 '.psf', '.sap', '.sid', '.spc', '.vgm', '.vgz', '.vtx', '.ym',
                 '.minipsf']
 
+# pylint: disable=bad-whitespace
 MIDI_EXTS     = ['.mid', '.rmi', '.midi']
 MODULE_EXTS   = [',mod', '.s3m', '.stm', '.xm', '.it']
 PLAYLIST_EXTS = ['.cue', '.m3u', '.pls', '.xspf']

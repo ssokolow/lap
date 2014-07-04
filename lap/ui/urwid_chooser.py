@@ -52,7 +52,7 @@ class BetterListBox(urwid.ListBox):
                 limit = self._find_limit(True)
                 self.focus_position = min(self.focus_position + 1, limit)
         return super(BetterListBox, self).mouse_event(
-                    size, event, button, col, row, focus)
+            size, event, button, col, row, focus)
 
 class MyCheckBox(urwid.CheckBox):
     _command_map = urwid.command_map.copy()
@@ -108,7 +108,7 @@ class UrwidChooser(object):
         self.w_queue = MyCheckBox([('heading_ul', u'Q'), ('heading', u'ueue')])
         self.w_frame = self._menu(title, choices)
 
-        #TODO: Why is right=1 required to prevent layout glitches?
+        # TODO: Why is right=1 required to prevent layout glitches?
         self.main = urwid.Padding(self._menu(title, choices), left=1, right=1)
 
     def _menu(self, title, choices):
@@ -127,7 +127,8 @@ class UrwidChooser(object):
             cbox = MyCheckBox(path)
             urwid.connect_signal(cbox, 'change', self.item_toggled, pos)
             body.append(AttrMap(urwid.Padding(cbox, left=2, right=2),
-                'row' if pos % 2 else 'row_zebra', focus_map='selected'))
+                                'row' if pos % 2 else 'row_zebra',
+                                focus_map='selected'))
         body += [urwid.Divider()]
 
         foot = AttrMap(urwid.Pile([
@@ -142,7 +143,7 @@ class UrwidChooser(object):
 
         self.w_list = BetterListBox(urwid.SimpleFocusListWalker(body))
         return urwid.Frame(AttrMap(self.w_list, 'row'),
-                header=head, footer=foot)
+                           header=head, footer=foot)
 
     def item_toggled(self, cbox, new_state, idx):  # pylint: disable=W0613
         self.w_selected.set_idx(idx, new_state)
@@ -154,9 +155,9 @@ class UrwidChooser(object):
         self.w_queue.set_state(queue)
 
         loop = urwid.MainLoop(self.main, palette=self.palette,
-                unhandled_input=self.unhandled_key)
+                              unhandled_input=self.unhandled_key)
         loop.screen.set_terminal_properties(256)
-        #self.screen.reset_default_terminal_palette()
+        # self.screen.reset_default_terminal_palette()
 
         loop.run()
 
@@ -181,5 +182,5 @@ class UrwidChooser(object):
             raise urwid.ExitMainLoop()
         elif key in ['q', 'meta q']:
             self.w_queue.toggle_state()
-        #else:
-        #    self.w_selected.set_caption(str(key) + ': ')
+        # else:
+        #     self.w_selected.set_caption(str(key) + ': ')
