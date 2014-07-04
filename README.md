@@ -56,3 +56,4 @@ external dependencies.
 * [locate](https://en.wikipedia.org/wiki/Locate_%28Unix%29) (Only required for
   variants beginning with `l`)
 * [urwid](http://urwid.org/) (only required if you want the pretty chooser)
+* dbus-python (only required if you want to play/enqueue via MPRIS)

@@ -32,10 +32,9 @@ TODO:
  - Allow non-file:// URLs.
 """
 
-__appname__ = "Locate and Play"
 __author__ = "Stephan Sokolow (deitarion/SSokolow)"
-__version__ = "1.1"
 __license__ = "GNU GPL 2 or later"
+from version import __version__
 
 #TODO: Redesign this to support ack-like command-line filter options
 ADLIB_EXTS = ['.a2m', '.adl', '.amd', '.bam', '.cff', '.cmf', '.d00', '.dfm',
@@ -454,7 +453,7 @@ def choose(results, strip_path):
         return output
 
 #TODO: Split this up more
-if __name__ == '__main__':
+def main():
     cmd = os.path.split(sys.argv[0])[1]
     aTy = (cmd.lower() in ('ap', 'aq')) and '<path> ...' or '<keyword> ...'
 
@@ -580,3 +579,6 @@ if __name__ == '__main__':
         add_func(results, not opts.enqueue)
     else:
         print("No Results")
+
+if __name__ == '__main__':
+    main()
