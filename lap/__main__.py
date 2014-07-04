@@ -20,6 +20,8 @@ Note:
 --snip--
 
 TODO:
+ - Don't pass nonexistant paths to Audacious. It actually adds them to the
+   playlist.
  - Still needs more refactoring.
  - Decide how to expose filtering options from locate.
  - Implement /-triggered "search within these results" for lap.
@@ -81,7 +83,7 @@ locate_command = ['locate', '-i']
 
 # ========== Configuration Ends ==========
 
-import fnmatch, logging, os, random, subprocess, sys
+import fnmatch, logging, os, random, string, subprocess, sys
 log = logging.getLogger(__name__)
 
 # Use readline if available but don't depend on it
@@ -347,6 +349,37 @@ class MPRISAdder(object):
                 self.pq_add(self.iface.GetLength() - 1)
             play = False  # Only start the first one playing
 
+def sh_quote(file):
+    """Reliably quote a string as a single argument for /bin/sh
+
+    Borrowed from the pipes module in Python 2.6.2 stdlib and fixed to quote
+    empty strings properly and pass completely safechars strings through.
+    """
+    _safechars = string.ascii_letters + string.digits + '!@%_-+=:,./'
+    _funnychars = '"`$\\'           # Unsafe inside "double quotes"
+
+    if not file:
+        return "''"
+
+    for c in file:
+        if c not in _safechars:
+            break
+    else:
+        return file
+
+    if not [x for x in file if x not in _safechars]:
+        return file
+    elif '\'' not in file:
+        return '\'' + file + '\''
+
+    res = ''
+    for c in file:
+        if c in _funnychars:
+            c = '\\' + c
+        res = res + c
+    return '"' + res + '"'
+
+
 def gather_random(roots, wanted_count):
     """Use C{os.walk} to choose C{wanted_count} files from C{roots}.
 
@@ -465,6 +498,9 @@ if __name__ == '__main__':
             default=(cmd.lower() in ('rap', 'raq')),
             help="Select X entries at random from the provided paths. "
                  "(default if called as 'rap' or 'raq')")
+    op.add_option("--sh", action="store_true", dest="print_quoted",
+            help="Like --print but shell-quoted for use with tab completion "
+                 "via backticks")
     op.add_option('-v', '--verbose', action="count", dest="verbose",
         default=2, help="Increased verbosity. Use twice for extra effect")
 
@@ -534,7 +570,9 @@ if __name__ == '__main__':
             opts.print_nl = True
 
     # Feed the results to the player
-    if opts.print_null:
+    if opts.print_quoted:
+        print(' '.join(sh_quote(x) for x in results))
+    elif opts.print_null:
         print('\0'.join(results))
     elif opts.print_nl:
         print('\n'.join(results))
