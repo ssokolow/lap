@@ -241,8 +241,10 @@ def main():
     else:
         try:
             add_func = MPRISAdder().add_tracks
-        except (NameError, DBusException):
-            print("Cannot connect to D-Bus session bus. Assuming --print.")
+        except (NameError, DBusException), err:
+            print("Cannot connect to an MPRIS-compatible player. "
+                  "Assuming --print.")
+            print('\t%s' % err)
             add_func = lambda paths, play: None
             opts.print_nl = True
 
