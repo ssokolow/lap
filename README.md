@@ -62,6 +62,8 @@ what name it's called under.
 
 #### Known Compatible MPRIS Implementations
 
-* [Audacious Media Player](http://audacious-media-player.org/) (actively
-   [dogfooded](https://en.wikipedia.org/wiki/Eating_your_own_dog_food))
-* [QMMP](http://qmmp.ylsoftware.com/) (v0.7.7 tested on 2014-07-04)
+* [Audacious Media Player](http://audacious-media-player.org/) 3.4.x (3.5.x no
+  longer implements the MPRIS `/TrackList` interface)
+* [QMMP](http://qmmp.ylsoftware.com/)
+  * v0.7.7 tested on 2014-07-04
+  * v0.8.1 tested on 2014-08-08
