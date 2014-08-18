@@ -96,9 +96,11 @@ class UrwidChooser(object):
         ('heading', 'white', 'dark red'),
         ('heading_ul', 'white,underline', 'dark red'),
         ('line', 'black', 'dark red'),
-        ('row', 'black', 'light gray', 'standout', 'black', 'g85'),
-        ('row_zebra', 'black', 'light gray', 'standout', 'black', 'g89'),
+        ('row', 'black', 'light gray', 'standout', 'black', 'light gray'),
+        ('row_zebra', 'black', 'light gray', 'standout', 'black', 'light gray'),
         ('selected', 'white', 'dark blue')
+        # XXX: If you can find a way to detect 88-color urxvt, edit 'row_zebra'
+        #      so the last parameter is set to 'g89' for 256-color terminals.
     ]
     success = False
 
