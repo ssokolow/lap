@@ -47,7 +47,7 @@ locate_command = ['locate', '-i']
 # ========== Configuration Ends ==========
 
 import string  # pylint: disable=deprecated-module
-import fnmatch, logging, os, random, subprocess, sys
+import fnmatch, logging, os, random, shlex, subprocess, sys
 log = logging.getLogger(__name__)
 
 from .ui.fallback_chooser import choose
@@ -236,7 +236,8 @@ def main():
 
     # Branch for --exec, MPRIS, or fallback to print
     if opts.exe_cmd:
-        add_func = lambda paths, play: subprocess.call([opts.exe_cmd] + paths)
+        add_func = lambda paths, play: subprocess.call(
+                                         shlex.split(opts.exe_cmd) + paths)
     else:
         try:
             add_func = MPRISAdder().add_tracks
